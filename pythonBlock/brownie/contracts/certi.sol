@@ -2,7 +2,6 @@ pragma solidity ^0.6.0;
 
 contract certificate {
     address owner;
-
     modifier onlyOwner() {
         require(msg.sender == owner);
         _;
@@ -22,17 +21,13 @@ contract certificate {
         string gender;
         bool exist;
     }
-
     mapping(bytes32 => mapping(bytes32 => uint256)) indexKepper;
-
     mapping(uint256 => Student) public database;
-
     uint256 counter = 1;
     uint256 totalStudents = 0;
     uint256 index;
 
     // Add student function
-
     function addStudent(
         string memory __name,
         string memory __rollNo,
@@ -45,9 +40,7 @@ contract certificate {
         bytes32 _rollNo = toBytes32(__rollNo);
         bytes32 _name = toBytes32(__name);
         // unique[_name]=_rollNo ;
-
         index = indexKepper[_name][_rollNo];
-
         if (database[index].exist == false) {
             indexKepper[_name][_rollNo] = counter;
             index = counter;
@@ -58,11 +51,8 @@ contract certificate {
             database[index].sem2 = toInt(__sem2);
             database[index].gender = __gender;
             database[index].university = __university;
-
             database[index].exist = true;
-
             counter++;
-
             totalStudents++;
         } else {
             database[index].result = toInt(__result);
@@ -80,7 +70,6 @@ contract certificate {
         if (tempEmptyStringTest.length == 0) {
             return 0x0;
         }
-
         assembly {
             result := mload(add(source, 32))
         }
