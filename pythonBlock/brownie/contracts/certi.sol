@@ -28,7 +28,7 @@ contract certificate {
     uint256 index;
 
     // Add student function
-    function addStudent(
+    function  addStudent(
         string memory __name,
         string memory __rollNo,
         string memory __result,
